@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Settings : MonoBehaviour {
 
@@ -35,18 +36,44 @@ public class Settings : MonoBehaviour {
 
     /// <summary>
     /// Saves the settings
+    /// Is the button
     /// </summary>
     public void saveSettings()
     {
         File.WriteAllLines("settings.txt", settings.ToArray());
     }
 
+
+    //The settings text that displays whether the swearing is allowed
+    public Text swearingAllowedText;
+
+    public GameManager gameManager;
     /// <summary>
     /// What controlls the settings canvas view. Doesn't do the buttons
     /// </summary>
     public void settingsView()
     {
-
+        //Checks line 2 of the text file for the swearing setting
+        if (settings[1] == "true")
+        {
+            //Sets to true in game
+            swearingAllowedText.text = "Yes";
+        }
+        else
+        {
+            //Sets to false in game
+            swearingAllowedText.text = "No";
+        }
     }
+
+    public void swearingPressed()
+    {
+        if (settings[1] == "true")
+        {
+
+        }
+    }
+        
+    
 
 }
