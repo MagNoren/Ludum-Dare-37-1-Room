@@ -21,7 +21,7 @@ public class BattleScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-		
+        npcNumber = PlayerPrefs.GetInt("characterNumber");
 	}
 	
     /// <summary>
