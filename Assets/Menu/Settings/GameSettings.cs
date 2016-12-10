@@ -137,9 +137,8 @@ public class GameSettings : MonoBehaviour {
                 break;
             // Cancel
             case false:
-
+                //Does nothing here. Closes the box
                 break;
-
         }
     }
 
