@@ -5,7 +5,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Settings : MonoBehaviour {
+public class GameSettings : MonoBehaviour {
 
     public List<string> settings;
 
