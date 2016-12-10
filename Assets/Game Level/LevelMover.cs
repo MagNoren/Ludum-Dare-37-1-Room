@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.SceneManagement;
 
 public class LevelMover : MonoBehaviour {
 
@@ -9,8 +10,9 @@ public class LevelMover : MonoBehaviour {
     public int characterNumber;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+
 	}
 	
 	// Update is called once per frame
@@ -20,6 +22,11 @@ public class LevelMover : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerPrefs.SetInt("characterNumber", characterNumber);
+        if (overlevelManager.completedChars.Contains(characterNumber) == false)
+        {
+            PlayerPrefs.SetInt("characterNumber", characterNumber);
+            EditorSceneManager.LoadScene("BattleScene");
+        }
+        
     }
 }

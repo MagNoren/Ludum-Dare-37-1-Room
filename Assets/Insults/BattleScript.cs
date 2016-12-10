@@ -10,6 +10,7 @@ public class BattleScript : MonoBehaviour {
 
     public InsultReader insultReader;
     public GameManager gameManager;
+    public OverlevelManager overlevelManager;
 
     int wins;
     int losses;
@@ -32,6 +33,8 @@ public class BattleScript : MonoBehaviour {
         if (wins == 3)
         {
             gamePause = true;
+            overlevelManager.wonAgainstChars.Add(npcNumber);
+            overlevelManager.completedChars.Add(npcNumber);
             EditorUtility.DisplayDialog(
             "You win!", //Title
             "Well done!", //Message
