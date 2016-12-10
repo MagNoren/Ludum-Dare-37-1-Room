@@ -53,21 +53,9 @@ public class MenuScript : MonoBehaviour
     /// It does technically work. it's just it will always have the "PlayerLevel" as 0 unless you make some changes somewhere else
     /// It will then load the first level and basically be the same as the "Start" button
     /// </summary>
-    public void Continue()
+    public void Settings()
     {
-        //Sees if the player level is 0. If it's 0 the player hasn't started yet
-        if (PlayerPrefs.GetInt("PlayerLevel") == 0)
-        {
-            //So it loads the first level
-            SceneManager.LoadScene(levelToLoad);
-        }
-        else
-        {
-            //If there is a level, then it gets the level number and adds it to the end of "Level". If the PlayerLevel == 3 then it will be "Level3"
-            SceneManager.LoadScene("Level" + PlayerPrefs.GetInt("PlayerLevel"));
-            //It instantly loads this level, then prints the level string that it loaded for debugging. 
-            print("Level" + PlayerPrefs.GetInt("PlayerLevel"));
-        }
+        SceneManager.LoadScene("SettingsPage");
     }
 
 }

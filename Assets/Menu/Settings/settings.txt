@@ -1,2 +1,2 @@
 # swearingAllowed
-false
+true
