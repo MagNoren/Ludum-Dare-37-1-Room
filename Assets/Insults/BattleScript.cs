@@ -123,13 +123,31 @@ public class BattleScript : MonoBehaviour {
             gamePause = true;
         }
 
-        if (totalPlayerPower > npcInsultPower)
+        optionSelect = true;
+
+        if (totalPlayerPower > npcInsultPower && optionSelect == false)
         {
             wins += 1;
         }
-        else
+        else if (totalPlayerPower < npcInsultPower && optionSelect == false)
         {
             losses += 1;
+        }
+    }
+
+    public GameObject win1;
+    public GameObject win2;
+    public GameObject win3;
+
+    public GameObject loss1;
+    public GameObject loss2;
+    public GameObject loss3;
+
+    void scoreBoard()
+    {
+        if (wins == 1)
+        {
+
         }
     }
 
@@ -183,6 +201,8 @@ public class BattleScript : MonoBehaviour {
 
     //MARK: Player buttons
 
+    bool optionSelect;
+
     public void playerButtonOnePressed()
     {
         System.Random rnd = new System.Random();
@@ -190,6 +210,8 @@ public class BattleScript : MonoBehaviour {
         int delivery = rnd.Next(1, 4);
 
         int totalPlayerPower = delivery * insultOnePlayerPower;
+
+        optionSelect = false;
     }
 
     public void playerButtonTwoPressed()
@@ -199,6 +221,8 @@ public class BattleScript : MonoBehaviour {
         int delivery = rnd.Next(1, 4);
 
         int totalPlayerPower = delivery * insultTwoPlayerPower;
+
+        optionSelect = false;
     }
 
     public void playerButtonThreePressed()
@@ -208,6 +232,8 @@ public class BattleScript : MonoBehaviour {
         int delivery = rnd.Next(1, 4);
 
         totalPlayerPower = delivery * insultThreePlayerPower;
+
+        optionSelect = false;
     }
 }
 
