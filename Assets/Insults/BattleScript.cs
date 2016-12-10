@@ -19,12 +19,64 @@ public class BattleScript : MonoBehaviour {
 
     public bool gamePause = false;
 
+    public SpriteRenderer spriteRenderer;
+
 	// Use this for initialization
 	void Start ()
     {
         npcNumber = PlayerPrefs.GetInt("characterNumber");
+        
 	}
-	
+
+    public GameObject npcObject;
+
+    public Sprite char1Sprite;
+    public Sprite char2Sprite;
+    public Sprite char3Sprite;
+    public Sprite char4Sprite;
+    public Sprite char5Sprite;
+    public Sprite char6Sprite;
+    public Sprite char7Sprite;
+    public Sprite char8Sprite;
+
+    void setSprites()
+    {
+        spriteRenderer = npcObject.GetComponent<SpriteRenderer>();
+        if (npcNumber == 1)
+        {
+            spriteRenderer.sprite = char1Sprite;
+        }
+        if (npcNumber == 2)
+        {
+            spriteRenderer.sprite = char2Sprite;
+        }
+        if (npcNumber == 3)
+        {
+            spriteRenderer.sprite = char3Sprite;
+        }
+        if (npcNumber == 4)
+        {
+            spriteRenderer.sprite = char4Sprite;
+        }
+        if (npcNumber == 5)
+        {
+            spriteRenderer.sprite = char5Sprite;
+        }
+        if (npcNumber == 6)
+        {
+            spriteRenderer.sprite = char6Sprite;
+        }
+        if (npcNumber == 7)
+        {
+            spriteRenderer.sprite = char7Sprite;
+        }
+        if (npcNumber == 8)
+        {
+            spriteRenderer.sprite = char8Sprite;
+        }
+
+    }
+
     /// <summary>
     /// Checks if the player has won or lost
     /// </summary>
