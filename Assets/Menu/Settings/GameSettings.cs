@@ -58,11 +58,13 @@ public class GameSettings : MonoBehaviour {
         {
             //Sets to true in game
             swearingAllowedText.text = "Yes";
+            PlayerPrefs.SetString("SwearingAllowed", "true");
         }
         else
         {
             //Sets to false in game
             swearingAllowedText.text = "No";
+            PlayerPrefs.SetString("SwearingAllowed", "false");
         }
     }
 
