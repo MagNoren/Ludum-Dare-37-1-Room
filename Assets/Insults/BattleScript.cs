@@ -28,6 +28,7 @@ public class BattleScript : MonoBehaviour {
 	void Start ()
     {
         //npcNumber = PlayerPrefs.GetInt("characterNumber");
+        getInsults();
 	}
 
     public GameObject npcObject;
