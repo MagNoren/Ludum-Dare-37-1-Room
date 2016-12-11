@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.IO;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,14 +9,16 @@ using UnityEditor;
 
 public class BattleScript : MonoBehaviour {
 
-    public InsultReader insultReader;
     public GameManager gameManager;
     public OverlevelManager overlevelManager;
+
+    List<string> insults;
+    List<int> insultPowers;
 
     int wins;
     int losses;
 
-    int npcNumber;
+    int npcNumber = 1;
 
     public bool gamePause = false;
 
@@ -24,8 +27,7 @@ public class BattleScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        npcNumber = PlayerPrefs.GetInt("characterNumber");
-        
+        //npcNumber = PlayerPrefs.GetInt("characterNumber");
 	}
 
     public GameObject npcObject;
@@ -111,6 +113,7 @@ public class BattleScript : MonoBehaviour {
 	void Update ()
     {
         checkWins();
+        mainLoop();
 	}
 
     //MARK: Mainloop
@@ -151,14 +154,77 @@ public class BattleScript : MonoBehaviour {
         }
     }
 
+    public void getInsults()
+    {
+        if (gameManager.swearsAllowed == true)
+        {
+            var lines = File.ReadAllLines("Assets\\Insults\\vulgarInsults.txt");
+            foreach (var line in lines)
+            {
+                insults.Add(line);
+            }
+            foreach (var insult in insults)
+            {
+                int index = insults.IndexOf(insult);
+                print(insult);
+                print(index);
+                //    if (index % 2 == 0)
+                //    {
+                //        //Is even: Leave it
+                //    }
+                //    else
+                //    {
+                //        //Is odd: Remove, add to insultPowers
+                //        insultPowers.Add(Int32.Parse(insult));
+                //        insults.Remove(insult);
+                //    }
+                //}
+
+                //foreach (var item in insults)
+                //{
+                //    print(item.ToString());
+                //}
+                //foreach (var item in insultPowers)
+                //{
+                //    print(item.ToString());
+            }
+
+        }
+        //else
+        //{
+        //    //Double backslash because \ is escape so to use \ we escape the escape
+        //    var lines = File.ReadAllLines("Assets\\Insults\\cleanInsults.txt");
+        //    foreach (var line in lines)
+        //    {
+        //        insults.Add(line);
+        //    }
+        //    foreach (var insult in insults)
+        //    {
+        //        int index = insults.IndexOf(insult.ToString());
+        //        if (index % 2 == 0)
+        //        {
+        //            //Is even: Leave it
+        //        }
+        //        else
+        //        {
+        //            //Is odd: Remove, add to insultPowers
+        //            insultPowers.Add(Int32.Parse(insult));
+        //            insults.Remove(insult);
+        //        }
+        //    }
+        //}
+
+    }
+
+
     //MARK: NPC Insults
     public Text npcInsultText;
     int npcInsultPower;
     public void npcInsult()
     {
         System.Random rnd = new System.Random();
-        int insultIndex = rnd.Next(0, insultReader.insults.Count);
-        npcInsultText.text = insultReader.insults[insultIndex];
+        int insultIndex = rnd.Next(0, insults.Count);
+        npcInsultText.text = insults[insultIndex];
         int randomInsultPower = rnd.Next(1, 4);
         npcInsultPower = insultIndex * randomInsultPower;
     }
@@ -183,17 +249,17 @@ public class BattleScript : MonoBehaviour {
             int insultIndex;
             System.Random rnd = new System.Random();
 
-            insultIndex = rnd.Next(0, insultReader.insults.Count);
-            playerButtonOneText.text = insultReader.insults[insultIndex];
-            insultOnePlayerPower = insultReader.insultPowers[insultIndex];
+            insultIndex = rnd.Next(0, insults.Count);
+            playerButtonOneText.text = insults[insultIndex];
+            insultOnePlayerPower = insultPowers[insultIndex];
 
-            insultIndex = rnd.Next(0, insultReader.insults.Count);
-            playerButtonOneText.text = insultReader.insults[insultIndex];
-            insultTwoPlayerPower = insultReader.insultPowers[insultIndex];
+            insultIndex = rnd.Next(0, insults.Count);
+            playerButtonOneText.text = insults[insultIndex];
+            insultTwoPlayerPower = insultPowers[insultIndex];
 
-            insultIndex = rnd.Next(0, insultReader.insults.Count);
-            playerButtonOneText.text = insultReader.insults[insultIndex];
-            insultThreePlayerPower = insultReader.insultPowers[insultIndex];
+            insultIndex = rnd.Next(0, insults.Count);
+            playerButtonOneText.text = insults[insultIndex];
+            insultThreePlayerPower = insultPowers[insultIndex];
         }
         
         gamePause = true;

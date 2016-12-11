@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is basically the settings manager. 
+/// </summary>
 public class GameManager : MonoBehaviour {
-
 
     public bool swearsAllowed;
 
@@ -19,5 +21,16 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
+    void getSettings()
+    {
+        if (PlayerPrefs.GetString("SwearingAllowed") == "true")
+        {
+            swearsAllowed = true;
+        }
+        else
+        {
+            swearsAllowed = false;
+        }
+    }
 
 }
